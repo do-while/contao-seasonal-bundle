@@ -19,7 +19,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Softleister
  */
-class SoftleisterSeasonalBundle extends Bundle
+class SeasonalBundle extends Bundle
 {
-
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
 }

@@ -23,4 +23,4 @@ $GLOBALS['BE_MOD']['system']['seasons'] = [
 /**
  * Hook isVisibleElement
  */
-$GLOBALS['TL_HOOKS']['isVisibleElement'][]  = ['Softleister\SeasonalBundle\pprofilesHooks', 'ppIsVisibleElement'];
+// $GLOBALS['TL_HOOKS']['isVisibleElement'][]  = ['Softleister\SeasonalBundle\pprofilesHooks', 'ppIsVisibleElement'];
