@@ -10,14 +10,14 @@ declare(strict_types=1);
  * @license    LGPL
  */
 
-namespace Softleister\MpdftemplateBundle\DependencyInjection;
+namespace Softleister\SeasonalBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class MpdftemplateExtension extends Extension
+class SeasonalExtension extends Extension
 {
     public function load( array $configs, ContainerBuilder $container ): void
     {
