@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Softleister\SeasonalBundle;
 
+use Contao\Date;
 use Contao\System;
 use Contao\Backend;
 use Contao\DC_Table;
@@ -34,11 +35,15 @@ $GLOBALS['TL_DCA']['tl_season_period'] = [
     ],
     'list' => [
         'sorting' => [
-            'mode'                    => 4,
+            'mode'                    => DataContainer::MODE_PARENT,
             'fields'                  => ['sorting'],
-            'panelLayout'             => 'filter;sort,search,limit',
             'headerFields'            => ['title'],
-            'child_record_callback'   => ['tl_season_period', 'listProfiles']
+            'panelLayout'             => 'filter;sort,search,limit',
+            'defaultSearchField'      => 'title',
+        ],
+        'label' => [
+            'fields'                  => ['title', 'start', 'stop'],
+            'format'                  => '<span style="display:inline-block;width:300px">%s</span> <span style="display:inline-block;width:120px">%s</span> <span style="display:inline-block;width:120px">%s</span>',
         ],
     ],
     'palettes' => [
@@ -92,41 +97,3 @@ $GLOBALS['TL_DCA']['tl_season_period'] = [
         ],
     ]
 ];
-
-
-class tl_season_period extends Backend
-{
-    /**
-     * Import the back end user object
-     */
-    public function __construct( )
-    {
-        parent::__construct( );
-        $this->import( 'Contao\BackendUser', 'User' );
-    }
-
-
-    /**
-     * Add the type of input field
-     *
-     * @param array $arrRow
-     *
-     * @return string
-     */
-    public function listProfiles( $arrRow )
-    {
-        $key = $arrRow['published'] ? 'published' : 'unpublished';
-        $class = 'limit_height';
-
-        $format = 'd.m.Y';
-        if( $arrRow['year'] ) $format = str_replace( 'Y', '', $format );
-        $date = Date::parse( $format, $arrRow['start'] ) . ' - ' . Date::parse( $format, $arrRow['stop'] );
-        if( $arrRow['year'] ) $date .= ' (jährliche Wiederholung)';
-
-        return '
-<div class="cte_type ' . $key . '">' . $date . '</div>
-<div class="' . trim($class) . '">
-<p><strong>' . $arrRow['title'] . '</strong> [' . $arrRow['id'] . ']</p>
-</div>' . "\n";
-    }
-}

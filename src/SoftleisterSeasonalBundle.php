@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Softleister
  */
-class SeasonalBundle extends Bundle
+class SoftleisterSeasonalBundle extends Bundle
 {
     public function getPath(): string
     {
