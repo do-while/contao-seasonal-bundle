@@ -1,0 +1,38 @@
+{
+    "name": "do-while/contao-seasonal-bundle",
+    "description":"Seasonal activation of content elements",
+    "keywords":["contao", "contentelement", "seasons", "spring", "summer", "autumn", "winter"],
+    "type": "contao-bundle",
+    "homepage":"https://www.softleister.de",
+    "license":"LGPL-3.0+",
+    "authors":[{
+        "name": "Softleister - Hagen Klemp",
+        "homepage": "https://www.softleister.de",
+        "role":"Project leader"
+    }],
+    "support":{
+        "issues":"https://github.com/do-while/contao-seasonal-bundle/issues",
+        "source":"https://github.com/do-while/contao-seasonal-bundle"
+    },
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^5.3"
+    },
+    "autoload":{
+        "psr-4": {
+            "Softleister\\SeasonalBundle\\": "src/"
+        },
+        "classmap": [
+            "contao/"
+        ],
+        "exclude-from-classmap": [
+            "contao/config/",
+            "contao/dca/",
+            "contao/languages/",
+            "contao/templates/"
+        ]
+    },
+    "extra": {
+        "contao-manager-plugin": "Softleister\\SeasonalBundle\\ContaoManager\\Plugin"
+    }
+}
