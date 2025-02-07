@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license    LGPL
  */
 
-$GLOBALS['TL_LANG']['tl_season_profile']['id']           = [ 'ID', 'Eindeutige ID der Veröffentlichung' ];
-$GLOBALS['TL_LANG']['tl_season_profile']['title']        = [ 'Titel', 'Die Kategorien dienen nur einer Vorsortierung' ];
+$GLOBALS['TL_LANG']['tl_season_profile']['id']           = [ 'ID', 'Eindeutige ID des Profils' ];
+$GLOBALS['TL_LANG']['tl_season_profile']['title']        = [ 'Titel', 'Die Profile dienen nur einer Vorsortierung' ];
 
-$GLOBALS['TL_LANG']['tl_season_profile']['title_legend'] = 'Name der Kategorie';
+$GLOBALS['TL_LANG']['tl_season_profile']['title_legend'] = 'Name des Profils';

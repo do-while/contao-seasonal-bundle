@@ -18,14 +18,14 @@ $GLOBALS['TL_LANG']['tl_season_period']['year']         = ['jährlich', 'Jährli
 $GLOBALS['TL_LANG']['tl_season_period']['published']    = ['Aktiv', 'Nur aktive Veröffentlichungen werden berücksichtigt'];
 
 
-$GLOBALS['TL_LANG']['tl_season_period']['title_legend']   = 'Name der Veröffentlichung';
+$GLOBALS['TL_LANG']['tl_season_period']['title_legend']   = 'Name des Zeitraums';
 $GLOBALS['TL_LANG']['tl_season_period']['time_legend']    = 'Zeitraum der Veröffentlichung';
 $GLOBALS['TL_LANG']['tl_season_period']['publish_legend'] = 'Veröffentlichung';
 
 
-$GLOBALS['TL_LANG']['tl_season_period']['new']    = ['Neue Veröffentlichung', 'Neue Veröffentlichung'];
-$GLOBALS['TL_LANG']['tl_season_period']['edit']   = ['Veröffentlichung bearbeiten', 'Veröffentlichung ID %s bearbeiten'];
-$GLOBALS['TL_LANG']['tl_season_period']['copy']   = ['Veröffentlichung kopieren', 'Veröffentlichung ID %s kopieren'];
-$GLOBALS['TL_LANG']['tl_season_period']['delete'] = ['Veröffentlichung löschen', 'Veröffentlichung ID %s löschen'];
-$GLOBALS['TL_LANG']['tl_season_period']['toggle'] = ['Veröffentlichung aktivieren/deaktivieren', 'Veröffentlichung ID %s aktivieren/deaktivieren'];
-$GLOBALS['TL_LANG']['tl_season_period']['show']   = ['Veröffentlichungsdetails', 'Details zu Veröffentlichung ID %s anzeigen'];
+$GLOBALS['TL_LANG']['tl_season_period']['new']    = ['Neuer Zeitraum', 'Neuer Zeitraum'];
+$GLOBALS['TL_LANG']['tl_season_period']['edit']   = ['Zeitraum bearbeiten', 'Zeitraum ID %s bearbeiten'];
+$GLOBALS['TL_LANG']['tl_season_period']['copy']   = ['Zeitraum kopieren', 'Zeitraum ID %s kopieren'];
+$GLOBALS['TL_LANG']['tl_season_period']['delete'] = ['Zeitraum löschen', 'Zeitraum ID %s löschen'];
+$GLOBALS['TL_LANG']['tl_season_period']['toggle'] = ['Zeitraum aktivieren/deaktivieren', 'Zeitraum ID %s aktivieren/deaktivieren'];
+$GLOBALS['TL_LANG']['tl_season_period']['show']   = ['Details', 'Details zum Zeitraum ID %s anzeigen'];

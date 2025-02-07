@@ -10,8 +10,6 @@ declare(strict_types=1);
  * @license    LGPL
  */
 
-namespace Softleister\SeasonalBundle;
-
 use Contao\Date;
 use Contao\System;
 use Contao\Backend;

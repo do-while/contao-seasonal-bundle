@@ -10,8 +10,6 @@ declare(strict_types=1);
  * @license    LGPL
  */
 
-namespace Softleister\SeasonalBundle;
-
 use Contao\Backend;
 use Contao\Date;
 
@@ -19,11 +17,11 @@ use Contao\Date;
 /**
  * Additional field
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['season_profile'] = [
+$GLOBALS['TL_DCA']['tl_content']['fields']['season_period'] = [
     'inputType'               => 'select',
     'foreignKey'              => 'tl_season_profile.title',
-    // 'options_callback'        => ['pp_tl_content', 'getPProfiles'],
-    'eval'                    => ['chosen'=>true, 'includeBlankOption'=>true, 'blankOptionLabel'=>'--immer anzeigen--', 'tl_class'=>'clr w50'],
+    'options_callback'        => ['season_tl_content', 'getPeriods'],
+    'eval'                    => ['chosen'=>true, 'includeBlankOption'=>true, 'blankOptionLabel'=>'--' . ($GLOBALS['TL_LANG']['tl_content']['always'] ?? '') . '--', 'tl_class'=>'clr w50'],
     'sql'                     => ['type' => 'integer', 'notnull' => true, 'unsigned' => true, 'default' => '0'],
     'relation'                => ['type' => 'belongsTo', 'load' => 'lazy'],
 ];
@@ -31,44 +29,45 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['season_profile'] = [
 
 
 // /**
-//  * OnLoad-Callback to add the pprofile field
+//  * OnLoad-Callback to add the season field to any element
 //  */
-// $GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = ['pp_tl_content', 'insertPProfiles'];
+$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = ['season_tl_content', 'insertSeasons'];
 
 
 /**
- * Class - Add pp_profile field to all content element types
+ * Class - Add season field to all content element types
  */
-// class pp_tl_content extends Backend
-// {
-//     public function insertPProfiles( )
-//     {
-//         foreach( $GLOBALS['TL_DCA']['tl_content']['palettes'] as $palette=>$fields ) {
-//             // Check exceptions
-//             if( $palette === '__selector__' ) continue;
-//             if( $palette === 'default' ) continue;
-//             if( strstr($GLOBALS['TL_DCA']['tl_content']['palettes'][$palette], ',pp_profile') != false ) continue;
+class season_tl_content extends Backend
+{
+    public function insertSeasons( )
+    {
+        foreach( $GLOBALS['TL_DCA']['tl_content']['palettes'] as $palette => $fields ) {
+            if( ( $palette === '__selector__' ) || ( $palette === 'default' ) ) continue;       // das sind keine Elemente => überspringen
 
-//             // add publication profile to palette
-//             $GLOBALS['TL_DCA']['tl_content']['palettes'][$palette] = str_replace( ",stop", ",stop,pp_profile", $GLOBALS['TL_DCA']['tl_content']['palettes'][$palette] );
-//         }
-//     }
+            if( strstr($GLOBALS['TL_DCA']['tl_content']['palettes'][$palette], ',season_period') != false ) continue;
+
+            // add publication profile to palette
+            $GLOBALS['TL_DCA']['tl_content']['palettes'][$palette] = str_replace( ",invisible", ",season_period,invisible", $GLOBALS['TL_DCA']['tl_content']['palettes'][$palette] );
+            
+        }
+        $GLOBALS['TL_DCA']['tl_content']['fields']['invisible']['eval'] = ['tl_class'=>'clr m12'];
+    }
 
 
-//     //---------------------------------------------------------------
-//     // Creates a select with all publishing profiles
-//     //---------------------------------------------------------------
-//     public function getPProfiles( )
-//     {
-//         $objPf = $this->Database->prepare("SELECT c.title AS cat, p.* FROM tl_pprofiles AS p, tl_pcategories AS c WHERE p.pid = c.id ORDER BY c.title, p.sorting")
-//                                 ->execute( );
+    //---------------------------------------------------------------
+    // Creates a select with all publishing Periods
+    //---------------------------------------------------------------
+    public function getPeriods( )
+    {
+        $objPf = $this->Database->prepare("SELECT c.title AS cat, p.* FROM tl_season_period AS p, tl_season_profile AS c WHERE p.pid = c.id ORDER BY c.title, p.sorting")
+                                ->execute( );
 
-//         $arrOptions = [];
-//         while( $objPf->next() ) {
-//             $format = $objPf->year ? 'd.m.' : 'd.m.Y';
-//             $arrOptions[$objPf->cat][$objPf->id] = $objPf->title . ' &nbsp; (' . ($objPf->year ? 'Jährlich: ' : 'Zeitraum: ') . Date::parse( $format, $objPf->start ) . ' - ' . Date::parse( $format, $objPf->stop ) . ')';
-//         }
+        $arrOptions = [];
+        while( $objPf->next() ) {
+            $format = $objPf->year ? 'd.m.' : 'd.m.Y';
+            $arrOptions[$objPf->cat][$objPf->id] = $objPf->title . ' &nbsp; (' . ($objPf->year ? $GLOBALS['TL_LANG']['tl_content']['yearly'] : $GLOBALS['TL_LANG']['tl_content']['period']) . ': ' . Date::parse( $format, $objPf->start ) . ' - ' . Date::parse( $format, $objPf->stop ) . ')';
+        }
 
-//         return $arrOptions;
-//     }
-// }
+        return $arrOptions;
+    }
+}

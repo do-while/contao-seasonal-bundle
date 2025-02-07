@@ -10,8 +10,6 @@ declare(strict_types=1);
  * @license    LGPL
  */
 
-namespace Softleister\SeasonalBundle;
-
 use Contao\DC_Table;
 use Contao\DataContainer;
 
