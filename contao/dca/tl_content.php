@@ -21,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['season_period'] = [
     'inputType'               => 'select',
     'foreignKey'              => 'tl_season_profile.title',
     'options_callback'        => ['season_tl_content', 'getPeriods'],
-    'eval'                    => ['chosen'=>true, 'includeBlankOption'=>true, 'blankOptionLabel'=>'--' . ($GLOBALS['TL_LANG']['tl_content']['always'] ?? '') . '--', 'tl_class'=>'clr w50'],
+    'eval'                    => ['chosen' => true, 'includeBlankOption' => true, 'blankOptionLabel' => '-- ' . ($GLOBALS['TL_LANG']['tl_content']['always'] ?? '') . ' --', 'tl_class' => 'clr w50'],
     'sql'                     => ['type' => 'integer', 'notnull' => true, 'unsigned' => true, 'default' => '0'],
     'relation'                => ['type' => 'belongsTo', 'load' => 'lazy'],
 ];
